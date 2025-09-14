@@ -1,4 +1,3 @@
-TODO:
-- [ ] Group Responsibilities (Leadership, Technical Achievements, Business Impact)
-- [ ] Group Skills by Domain (Programming Languages, ML Frameworks, Cloud Platforms, DevOps Tools)
-- [ ] 
+## Latest CV PDF
+
+You can download the latest compiled CV PDF [here](https://github.com/leehosanganson/cv-latex/raw/main/ansonhosanglee_latest.pdf).

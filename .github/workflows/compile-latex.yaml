@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v4
@@ -32,3 +34,19 @@ jobs:
         with:
           name: PDF
           path: ${{ steps.date.outputs.filename }}
+
+      - name: Create static PDF for README
+        run: cp ${{ steps.date.outputs.filename }} ansonhosanglee_latest.pdf
+
+      - name: Commit static PDF to repository
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+          git add ansonhosanglee_latest.pdf
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update latest CV PDF"
+            git push origin ${{ github.ref_name }}
+          fi
