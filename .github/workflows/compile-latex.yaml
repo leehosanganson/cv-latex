@@ -16,7 +16,6 @@ jobs:
         uses: xu-cheng/latex-action@v4
         with:
           root_file: main.tex
-          docker_image: ghcr.io/xu-cheng/texlive-alpine-small:latest
 
       - name: Generate timestamped filename and rename PDF
         id: date
