@@ -16,6 +16,7 @@ jobs:
         uses: xu-cheng/latex-action@v4
         with:
           root_file: main.tex
+          docker_image: ghcr.io/xu-cheng/texlive-alpine-small:latest
 
       - name: Generate timestamped filename and rename PDF
         id: date
@@ -23,8 +24,9 @@ jobs:
           # Get current date in YYYY-MM-DD format
           DATE_STR=$(date +'%Y%m%d')
           # Construct the filename
-          echo "ansonhosanglee_${DATE_STR}.pdf" >> $GITHUB_OUTPUT
-          mv main.pdf ansonhosanglee_${DATE_STR}.pdf
+          FILENAME="ansonhosanglee_${DATE_STR}.pdf"
+          mv main.pdf "$FILENAME"
+          echo "filename=$FILENAME" >> $GITHUB_OUTPUT
 
       - name: Upload PDF file
         uses: actions/upload-artifact@v4
