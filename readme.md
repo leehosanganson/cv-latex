@@ -1,4 +1,4 @@
-[![LaTeX Build](https://img.shields.io/github/workflow/status/leehosanganson/cv-latex/Build%20LaTeX%20Document?label=LaTeX%20Build)](https://github.com/leehosanganson/cv-latex/actions/workflows/compile-latex.yaml)
+[![LaTeX Build](https://img.shields.io/github/actions/workflow/status/leehosanganson/cv-latex/compile-latex.yaml?branch=main)](https://github.com/leehosanganson/cv-latex/actions/workflows/compile-latex.yaml)
 
 ## Latest CV PDF
 
