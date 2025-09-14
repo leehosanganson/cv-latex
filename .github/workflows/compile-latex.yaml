@@ -1,0 +1,33 @@
+name: Build LaTeX Document
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v4
+
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: main.tex
+
+      - name: Generate timestamped filename and rename PDF
+        id: date
+        run: |
+          # Get current date in YYYY-MM-DD format
+          DATE_STR=$(date +'%Y%m%d')
+          # Construct the filename
+          echo "ansonhosanglee_${DATE_STR}.pdf" >> $GITHUB_OUTPUT
+          mv main.pdf ansonhosanglee_${DATE_STR}.pdf
+
+      - name: Upload PDF file
+        uses: actions/upload-artifact@v4
+        with:
+          name: PDF
+          path: ${{ steps.date.outputs.filename }}
