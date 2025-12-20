@@ -54,5 +54,15 @@ jobs:
 
       - name: Create Git tag for the release
         run: |
-          git tag ${{ steps.date.outputs.filename }}
-          git push origin ${{ steps.date.outputs.filename }}
+          # Check if the tag already exists, if exists, add a suffix increment
+          if git rev-parse ${{ steps.date.outputs.filename }} >/dev/null 2>&1; then
+            COUNT=1
+            while git rev-parse "${{ steps.date.outputs.filename }}_$COUNT" >/dev/null 2>&1; do
+              COUNT=$((COUNT + 1))
+            done
+            TAG_NAME="${{ steps.date.outputs.filename }}_$COUNT"
+          else
+            TAG_NAME="${{ steps.date.outputs.filename }}"
+          fi
+          git tag $TAG_NAME
+          git push origin $TAG_NAME
