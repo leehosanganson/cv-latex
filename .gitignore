@@ -10,3 +10,6 @@
 *.toc
 
 main.pdf
+
+# flake.nix
+.direnv
